@@ -20,6 +20,7 @@ export default {
 		}
 		if (supportedDomains) {
 			const origin = request.headers.get('Origin')
+			console.log('origin', origin)
 			const isAllowed = origin && supportedDomains.some(domain => {
 				return origin === domain || (domain.startsWith('.') && new URL(origin).hostname.endsWith(domain));
 			});
