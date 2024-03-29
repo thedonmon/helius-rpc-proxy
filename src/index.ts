@@ -20,8 +20,11 @@ export default {
 		}
 		if (supportedDomains) {
 			const origin = request.headers.get('Origin')
-			if (origin && supportedDomains.includes(origin)) {
-				corsHeaders['Access-Control-Allow-Origin'] = origin
+			const isAllowed = origin && supportedDomains.some(domain => {
+				return origin === domain || (domain.startsWith('.') && new URL(origin).hostname.endsWith(domain));
+			});
+			if (origin && isAllowed) {
+				corsHeaders['Access-Control-Allow-Origin'] = origin;
 			}
 		} else {
 			corsHeaders['Access-Control-Allow-Origin'] = '*'
