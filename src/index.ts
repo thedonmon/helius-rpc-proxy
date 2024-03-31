@@ -21,12 +21,12 @@ export default {
 		if (supportedDomains) {
 			const origin = request.headers.get('Origin')
 			console.log('origin', origin, supportedDomains)
-			if (!origin) {
-				return new Response("Not allowed", {
-					status: 400,
-					headers: corsHeaders,
-				});
-			}
+			// if (!origin) {
+			// 	return new Response("Not allowed", {
+			// 		status: 400,
+			// 		headers: corsHeaders,
+			// 	});
+			// }
 			const isAllowed = origin && supportedDomains.some(domain => {
 				return origin === domain || (domain.startsWith('.') && new URL(origin).hostname.endsWith(domain));
 			});
