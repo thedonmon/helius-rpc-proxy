@@ -30,10 +30,10 @@ export default {
 		// originated from one of the domains in the `CORS_ALLOW_ORIGIN` environment variable.
 		// Wildcard subdomains are also supported (e.g., `.example.com` matches `sub.example.com`)
 		const supportedDomains = env.CORS_ALLOW_ORIGIN?.split(',').map(d => d.trim());
-		const corsHeaders: Record<string, string> = {
-			'Access-Control-Allow-Methods': 'GET, HEAD, POST, PUT, OPTIONS',
-			'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-		};
+	const corsHeaders: Record<string, string> = {
+		'Access-Control-Allow-Methods': 'GET, HEAD, POST, PUT, OPTIONS',
+		'Access-Control-Allow-Headers': '*',
+	};
 
 		if (supportedDomains) {
 			const origin = request.headers.get('Origin');
