@@ -1,23 +1,31 @@
 name: Build
 on:
   push:
+    branches: [main]
   pull_request:
-  repository_dispatch:
+    branches: [main]
 jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v2
-      - name: Publish
-        uses: cloudflare/wrangler-action@2.0.0
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install
+      - name: Type check
+        run: npx tsc --noEmit
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3.14.1
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
           secrets: |
             CORS_ALLOW_ORIGIN
             HELIUS_API_KEY
         env:
-          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CORS_ALLOW_ORIGIN: ${{ secrets.CORS_ALLOW_ORIGIN }}
           HELIUS_API_KEY: ${{ secrets.HELIUS_API_KEY }}
 

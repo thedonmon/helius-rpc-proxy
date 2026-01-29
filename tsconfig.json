@@ -2,13 +2,15 @@
 	"compilerOptions": {
 		"noEmit": true,
 		"module": "esnext",
-		"target": "es2020",
-		"lib": ["es2020", "WebWorker"],
+		"target": "esnext",
+		"lib": ["esnext"],
 		"strict": true,
 		"alwaysStrict": true,
 		"preserveConstEnums": true,
 		"moduleResolution": "node",
 		"sourceMap": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
 		"types": ["@cloudflare/workers-types"]
 	},
 	"include": ["src"],
