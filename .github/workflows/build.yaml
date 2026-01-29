@@ -22,10 +22,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          secrets: |
-            CORS_ALLOW_ORIGIN
-            HELIUS_API_KEY
-        env:
-          CORS_ALLOW_ORIGIN: ${{ secrets.CORS_ALLOW_ORIGIN }}
-          HELIUS_API_KEY: ${{ secrets.HELIUS_API_KEY }}
 
